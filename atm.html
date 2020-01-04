@@ -1,0 +1,121 @@
+<html>
+<head>
+    <h1>WELCOME TO THE ATM CENTER</h1>
+    <hr align="left" width="50%">
+    <form name="A" onsubmit="atm()" >
+  
+        Enter The Amount you want to withdraw(PUT MULTIPLES OF 100)
+        <input type ="text" id="amount"  value="0"><br>
+        <input type="submit" value="submit">
+        
+        </form>
+  </head>
+  <body>
+        <script>
+        function atm()
+  {
+    
+    var withdraw=document.getElementById("amount").value;
+    document.write(" AMOUNT WITHDREW = "+withdraw+" <br>");
+    
+    var Notes=[["Two-Thousand",0],["Five-Hundred",0],["Two-Hundred",0],["Hundred",0]];
+    
+    var leftmoney=[["Two-Thousand",0],["Five-Hundred",0],["Two-Hundred",0],["Hundred",0]];
+    leftmoney[0][1]=10;
+    leftmoney[1][1]=10;
+    leftmoney[2][1]=10;
+    leftmoney[3][1]=10;
+   
+    var MoneyInMachine=(2000*leftmoney[0][1]+500*leftmoney[1][1]+200*leftmoney[2][1]+100*leftmoney[3][1]);
+    
+     if(withdraw>(MoneyInMachine))
+      {
+          alert(" oops, the machine does not contain this much amount");
+      
+           }
+  else
+  {
+   
+    
+     
+        if(withdraw>=2000)                              //Rs.2000
+          {
+            if(withdraw>2000*leftmoney[0][1])
+              {
+                Notes[0][1]=leftmoney[0][1];
+                withdraw-=leftmoney[0][1]*2000;
+                leftmoney[0][1]=0;
+              }
+            else
+              {
+                Notes[0][1]=parseInt(withdraw/2000);
+                withdraw-=Notes[0][1]*2000;
+                leftmoney[0][1]-=Notes[0][1];
+              }
+          }
+    
+     
+          
+         if(withdraw>=500)                            //Rs.500
+          {
+            if(withdraw>500*leftmoney[1][1])
+              {
+                Notes[1][1]=leftmoney[1][1];
+                withdraw-=leftmoney[1][1]*500;
+                leftmoney[1][1]=0;
+              }
+            else
+              {
+                Notes[1][1]=parseInt(withdraw/500);
+                withdraw-=Notes[1][1]*500;
+                leftmoney[1][1]-=Notes[1][1];
+              }
+          }
+    
+         if(withdraw>=200)                            //Rs.200 
+          {
+            if(withdraw>200*leftmoney[2][1])
+              {
+                Notes[2][1]=leftmoney[2][1];
+                withdraw-=leftmoney[2][1]*200;
+                leftmoney[2][1]=0;
+              }
+            else
+              {
+                Notes[2][1]=parseInt(withdraw/200);
+                withdraw-=Notes[2][1]*200;
+                leftmoney[2][1]-=Notes[2][1];
+              }
+          }
+    
+         if(withdraw>=100)                             //Rs100
+          {
+            if(withdraw>100*leftmoney[3][1])
+              {
+                Notes[3][1]=leftmoney[3][1];
+                withdraw-=leftmoney[3][1]*100;
+                leftmoney[3][1]=0;
+              }
+            else
+              {
+                Notes[3][1]=parseInt(withdraw/100);
+                withdraw-=Notes[3][1]*100;
+                leftmoney[3][1]-=Notes[3][1];
+              }
+          }
+    
+    
+   for(var i=0;i<Notes.length;i++)
+    {
+      document.write(i+1+")"+Notes[i][0]+" Number of notes withdrew "+" = "+Notes[i][1]+"<br>"+"number of notes left in the machine "+leftmoney[i][0]+" = "+leftmoney[i][1]+"<br><br><br>");
+      
+      
+    }
+    document.write("Transaction completed");
+  }
+      
+    
+  }
+  </script>
+</body>
+</html>
